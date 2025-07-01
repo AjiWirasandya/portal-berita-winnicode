@@ -9,10 +9,13 @@ app.use(express.json());
 const articlesRoutes = require("./routes/articles");
 const categoriesRoutes = require("./routes/categories");
 const authRoutes = require("./routes/auth");
+const commentsRoutes = require("./routes/comments");
 
 app.use("/articles", articlesRoutes);
 app.use("/categories", categoriesRoutes);
 app.use("/auth", authRoutes);
+app.use("/comments", commentsRoutes);
+
 
 const PORT = process.env.PORT || 3000;
 app.get('/', (req, res) => {

@@ -14,4 +14,14 @@ const createCategory = async (req, res) => {
   res.json(result.rows[0]);
 };
 
-module.exports = { getAllCategories, createCategory };
+const deleteCategory = async (req, res) => {
+  const { id } = req.body;
+  const result = await pool.query(
+    "DELETE FROM categories WHERE id = $1 RETURNING *",
+    [id]
+  );
+  res.json({ message: "Category sucessfully deleted", category: result.rows[0] }
+  );
+};
+
+module.exports = { getAllCategories, createCategory, deleteCategory };
