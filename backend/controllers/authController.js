@@ -13,7 +13,7 @@ const login = async (req, res) => {
   const match = await bcrypt.compare(password, user.password);
   if (!match) return res.status(401).json({ msg: "Wrong password" });
 
-  const token = jwt.sign({ id: user.id, role: user.role }, "rahasia", { expiresIn: "1d" });
+  const token = jwt.sign({ id: user.id, role: user.role }, "rahasia", { expiresIn: "5d" });
   res.json({ token });
 }; 
 

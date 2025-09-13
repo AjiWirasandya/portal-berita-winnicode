@@ -9,6 +9,11 @@ const Header: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  };
+
   useEffect(() => {
     fetch('http://localhost:3000/categories')
       .then((res) => res.json())
@@ -29,7 +34,7 @@ const Header: React.FC = () => {
       {/* <img src="/logo.png" alt="OnlyFacts Logo" style={{ height: 100, marginRight: 32 }} /> */}
       <div style={{ marginRight: 32, height: 100, backgroundColor: "#fff", padding: "8px 16px", border: 0, color: "#000" }}>
         <h1>
-          OnlyFacts
+          FactsOnly
         </h1>
       </div>
 
@@ -106,10 +111,33 @@ const Header: React.FC = () => {
             minWidth: 140,
             zIndex: 10
           }}>
-            <button style={{ width: "100%", padding: "10px 16px", border: "none", background: "none", textAlign: "left", cursor: "pointer" }}>
+            <button 
+              style={{ 
+                width: "100%", 
+                padding: "10px 16px", 
+                border: "none", 
+                background: "none", 
+                textAlign: "left", 
+                cursor: "pointer",
+                fontSize: 14
+              }}
+            >
               Settings
             </button>
-            <button style={{ width: "100%", padding: "10px 16px", border: "none", background: "none", textAlign: "left", cursor: "pointer", color: "red" }}>
+            <button 
+              onClick={handleLogout}
+              style={{ 
+                width: "100%", 
+                padding: "10px 16px", 
+                border: "none", 
+                background: "none", 
+                textAlign: "left", 
+                cursor: "pointer", 
+                color: "red",
+                fontSize: 14,
+                borderTop: "1px solid #eee"
+              }}
+            >
               Logout
             </button>
           </div>
